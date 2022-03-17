@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './tailwind.css';
 import App from './App';
-import Dashboard from './pages/user/dashboard';
 import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
+import NotFound from './pages/NotFound';
+import Dashboard from './pages/user/Dashboard';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
           <Route path='signup' element={<Signup />} />
           <Route path='dashboard/*' element={<Dashboard />}></Route>
         </Route>
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
