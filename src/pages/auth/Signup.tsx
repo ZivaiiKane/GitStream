@@ -1,7 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { app } from '../../firebase';
 import { Formik, Form } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/auth/Input';
 import Button from '../../components/auth/Button';
 import { signupUser } from '../../schema/schema';
@@ -9,6 +9,7 @@ import { signupUser } from '../../schema/schema';
 export default function Signup() {
   const firebase = app;
   const auth = getAuth();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -24,7 +25,7 @@ export default function Signup() {
             signupUser.parse(values);
 
             if (values.password !== values.confirmPassword) {
-              console.log('Psswords do not match.');
+              console.log('Passwords do not match.');
             }
           }}
           onSubmit={(vaules) => {
@@ -32,7 +33,8 @@ export default function Signup() {
 
             createUserWithEmailAndPassword(auth, email, password).then(
               (response) => {
-                console.log(response);
+                document.cookie = `user=${JSON.stringify(response)}`;
+                navigate('/dashboard');
               }
             );
           }}

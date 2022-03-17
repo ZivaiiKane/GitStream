@@ -7,6 +7,7 @@ import Login from './pages/auth/Login';
 import Signup from './pages/auth/Signup';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/user/Dashboard';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.render(
         <Route path='/' element={<App />}>
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<Signup />} />
-          <Route path='dashboard/*' element={<Dashboard />}></Route>
+        </Route>
+        <Route path='/' element={<ProtectedRoute />}>
+          <Route path='dashboard/*' element={<Dashboard />} />
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>

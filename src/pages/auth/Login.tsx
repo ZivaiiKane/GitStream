@@ -1,6 +1,6 @@
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Form, Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/auth/Button';
 import Input from '../../components/auth/Input';
 import { app } from '../../firebase';
@@ -9,6 +9,7 @@ import { loginUser } from '../../schema/schema';
 export default function Login() {
   const firebase = app;
   const auth = getAuth();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -26,7 +27,8 @@ export default function Login() {
 
             signInWithEmailAndPassword(auth, email, password).then(
               (response) => {
-                console.log(response);
+                document.cookie = `user=${JSON.stringify(response)}`;
+                navigate('/dashboard');
               }
             );
           }}
