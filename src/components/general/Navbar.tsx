@@ -8,7 +8,7 @@ export default function Navbar() {
           </a>
           <div className=' max-w-sm'></div>
           <div className='flex ml-auto h-full items-center'>
-            <button className='px-3 py-2 mt-1 text-neutral-700  border-[1.5px] hover:bg-neutral-700 hover:text-white border-neutral-700 rounded-md transition-all'>
+            <button className='px-3 py-2 mt-1 text-neutral-700  border-[1.5px] hover:bg-neutral-700 hover:text-white border-neutral-700  transition-all'>
               Logout
             </button>
           </div>
