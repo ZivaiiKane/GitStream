@@ -1,3 +1,3 @@
 export default function Follow() {
-  return <div>Follow</div>;
+  return <div></div>;
 }

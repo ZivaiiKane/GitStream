@@ -9,7 +9,7 @@ export default function InnerNav() {
             <li>
               <Link
                 to=''
-                className=' inline-flex p-4 text-lg text-neutral-500 hover:text-neutral-800  focus:text-neutral-800 focus:font-semibold focus:underline transition-all'
+                className=' inline-flex p-4 text-lg text-neutral-500 hover:text-neutral-800  focus:text-neutral-800 focus:font-medium focus:underline transition-all'
               >
                 Devs
               </Link>{' '}
@@ -18,7 +18,7 @@ export default function InnerNav() {
             <li>
               <Link
                 to='following'
-                className=' inline-flex p-4 text-lg text-neutral-500 hover:text-neutral-800 focus:text-neutral-800 focus:font-semibold focus:underline transition-all'
+                className=' inline-flex p-4 text-lg text-neutral-500 hover:text-neutral-800 focus:text-neutral-800 focus:font-medium focus:underline transition-all'
               >
                 Following
               </Link>{' '}
@@ -27,7 +27,7 @@ export default function InnerNav() {
               {' '}
               <Link
                 to='repos'
-                className=' inline-flex p-4 text-lg text-neutral-500 hover:text-neutral-800  focus:text-neutral-800 focus:font-semibold focus:underline transition-all'
+                className=' inline-flex p-4 text-lg text-neutral-500 hover:text-neutral-800  focus:text-neutral-800 focus:font-medium focus:underline transition-all'
               >
                 Repos
               </Link>{' '}
