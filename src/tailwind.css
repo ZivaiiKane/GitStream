@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 240px 2fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+}
