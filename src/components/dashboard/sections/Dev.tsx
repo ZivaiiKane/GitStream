@@ -1,4 +1,5 @@
 import ImageCard from '../../general/ImageCard';
+import UserCard from '../UserCard';
 
 export default function Dev() {
   return (
@@ -12,6 +13,8 @@ export default function Dev() {
           { text: 'Developers', colour: 'bg-red-400' },
         ]}
       />
+
+      <UserCard />
     </div>
   );
 }

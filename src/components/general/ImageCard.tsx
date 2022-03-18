@@ -8,20 +8,20 @@ export default function ImageCard({
   img,
 }: IImageCard) {
   return (
-    <div className=' bg-white border-[1.5px] border-neutral-700 '>
+    <div className='img-card bg-white border-[1.3px] border-neutral-700 '>
       <div>
         <img src={img} alt='technology' />
       </div>
       <div className='p-[1em] '>
-        <h1 className=' font-semibold text-neutral-700 text-2xl mb-2'>
+        <h1 className=' font-semibold text-neutral-700 text-2xl mb-1'>
           {heading}
         </h1>
 
-        <p className=' text-neutral-700 font-normal'>{description}</p>
+        <p className=' text-neutral-700 font-normal text-base'>{description}</p>
 
         {languages.map((language) => (
           <span
-            className={`text-[0.9em] inline-block tracking-[0.15ch] font-normal ${language.colour} text-white   py-[0.2em] px-[0.5em]  mt-2 mr-2 `}
+            className={`text-[0.9em] inline-block tracking-[0.15ch] font-normal ${language.colour} text-white   py-[0.2em] px-[0.5em]  mt-2 mr-2 transition-all`}
             key={nanoid()}
           >
             #{language.text}
