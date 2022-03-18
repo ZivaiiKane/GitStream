@@ -16,10 +16,11 @@ ReactDOM.render(
         <Route path='/' element={<App />}>
           <Route path='login' element={<Login />} />
           <Route path='signup' element={<Signup />} />
+          <Route path='/' element={<ProtectedRoute />}>
+            <Route path='dashboard/*' element={<Dashboard />} />
+          </Route>
         </Route>
-        <Route path='/' element={<ProtectedRoute />}>
-          <Route path='dashboard/*' element={<Dashboard />} />
-        </Route>
+
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>

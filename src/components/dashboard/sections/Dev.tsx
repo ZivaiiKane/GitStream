@@ -1,7 +1,23 @@
+import { nanoid } from 'nanoid';
+import { useQueries, useQuery } from 'react-query';
+import { getAllUsers, getUser } from '../../../adapters/users';
+import { IAllUsers } from '../../../interfaces/interfaces';
 import ImageCard from '../../general/ImageCard';
 import UserCard from '../UserCard';
 
 export default function Dev() {
+  const { data: users } = useQuery('users', getAllUsers);
+
+  const usersInfo = useQueries(
+    users?.data.map((user: IAllUsers) => {
+      return {
+        queryKey: ['user', user.login],
+        queryFn: () => getUser(user.login),
+        enabled: !!users,
+      };
+    }) ?? []
+  );
+
   return (
     <div>
       <ImageCard
@@ -14,7 +30,9 @@ export default function Dev() {
         ]}
       />
 
-      <UserCard />
+      {usersInfo.map((user) => (
+        <UserCard user={user} key={nanoid()} />
+      ))}
     </div>
   );
 }
