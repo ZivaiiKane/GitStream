@@ -1,4 +1,4 @@
-import { IUser } from '../../interfaces/interfaces';
+import { IAllUsers, IUser } from '../../interfaces/interfaces';
 
 export default function UserCard({ user }: any) {
   return (
@@ -12,7 +12,7 @@ export default function UserCard({ user }: any) {
       </div>
       <div className='mt-2 ml-4'>
         <h1 className=' text-2xl font-medium text-neutral-800 '>
-          {user.data.data.name}
+          {user.data.data.name ? user.data.data.name : 'Name??'}
         </h1>
         <p className='text-lg text-normal text-neutral-700'>
           @{user.data.data.login}
@@ -29,10 +29,10 @@ export default function UserCard({ user }: any) {
           </div>
 
           <div className='flex items-center'>
-            <button className=' px-2 py-[0.2rem] mt-2 mr-4  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
+            <button className=' px-2 py-[0.1rem] mt-2 mr-4  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
               View
             </button>
-            <button className=' px-2 py-[0.2rem] mt-2 mr-4 text-neutral-900  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
+            <button className=' px-2 py-[0.1rem] mt-2 mr-4 text-neutral-900  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
               Follow
             </button>
           </div>

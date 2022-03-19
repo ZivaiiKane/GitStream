@@ -8,6 +8,7 @@ import Signup from './pages/auth/Signup';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/user/Dashboard';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import User from './pages/user/User';
 
 ReactDOM.render(
   <React.StrictMode>
