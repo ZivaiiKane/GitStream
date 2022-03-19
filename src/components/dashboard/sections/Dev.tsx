@@ -30,9 +30,9 @@ export default function Dev() {
         ]}
       />
 
-      {usersInfo.map((user) => (
+      {/* {usersInfo.map((user) => (
         <UserCard user={user} key={nanoid()} />
-      ))}
+      ))} */}
     </div>
   );
 }
