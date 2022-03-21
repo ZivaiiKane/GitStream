@@ -1,6 +1,6 @@
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { collection, addDoc } from 'firebase/firestore';
+import { doc, getFirestore } from 'firebase/firestore';
+import { setDoc } from 'firebase/firestore';
 import { app } from '../../firebase';
 import { Formik, Form } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,14 +14,13 @@ export default function Signup() {
   const navigate = useNavigate();
   const db = getFirestore();
 
-  async function addUserToDB(username: string) {
+  async function addUserToDB(username: string, email: string, uid: string) {
     try {
-      const docRef = await addDoc(collection(db, 'users'), {
+      await setDoc(doc(db, 'users', uid), {
         username: username,
         following: [],
+        email: email,
       });
-
-      console.log('Added: ', username);
     } catch (error) {
       console.error(error);
     }
@@ -49,8 +48,11 @@ export default function Signup() {
 
             createUserWithEmailAndPassword(auth, email, password).then(
               (response) => {
+                const uid = `${response.user.uid}`;
+
                 document.cookie = `user=${JSON.stringify(response)}`;
-                addUserToDB(username);
+
+                addUserToDB(username, email, uid);
                 navigate('/dashboard');
               }
             );

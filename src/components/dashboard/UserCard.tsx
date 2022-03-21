@@ -1,6 +1,6 @@
-import { IAllUsers, IUser } from '../../interfaces/interfaces';
+export default function UserCard({ user, followUserToggle }: any) {
+  let follow = true;
 
-export default function UserCard({ user }: any) {
   return (
     <div className=' user-card flex flex-row p-4 border-[1.3px] border-neutral-700 my-8 transition-all'>
       <div className=' w-26 h-26'>
@@ -32,7 +32,12 @@ export default function UserCard({ user }: any) {
             <button className=' px-2 py-[0.1rem] mt-2 mr-4  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
               View
             </button>
-            <button className=' px-2 py-[0.1rem] mt-2 mr-4 text-neutral-900  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
+            <button
+              className=' px-2 py-[0.1rem] mt-2 mr-4 text-neutral-900  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'
+              onClick={() => {
+                followUserToggle(user.data.data.login);
+              }}
+            >
               Follow
             </button>
           </div>

@@ -1,3 +1,4 @@
+import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import { useQueries, useQuery } from 'react-query';
 import { getAllUsers, getUser } from '../../../adapters/users';
@@ -7,6 +8,7 @@ import UserCard from '../UserCard';
 
 export default function Dev() {
   const { data: users } = useQuery('users', getAllUsers);
+  const db = getFirestore();
 
   const usersInfo = useQueries(
     users?.data.map((user: IAllUsers) => {
@@ -17,6 +19,34 @@ export default function Dev() {
       };
     }) ?? []
   );
+
+  function getCookie(name: string) {
+    let data = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return data ? JSON.parse(data[2]) : null;
+  }
+
+  const authUser = getCookie('user');
+
+  async function followUserToggle(user: string) {
+    const userRef = doc(db, 'users', authUser.user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      let isFollowingArr: string[] = userSnap.data().following;
+
+      if (!isFollowingArr.includes(user)) {
+        await updateDoc(userRef, {
+          following: [...isFollowingArr, user],
+        });
+      } else {
+        await updateDoc(userRef, {
+          following: isFollowingArr.filter((following) => following !== user),
+        });
+      }
+    } else {
+      console.error('No match');
+    }
+  }
 
   return (
     <div>
@@ -30,9 +60,13 @@ export default function Dev() {
         ]}
       />
 
-      {/* {usersInfo.map((user) => (
-        <UserCard user={user} key={nanoid()} />
-      ))} */}
+      {usersInfo.map((user) => (
+        <UserCard
+          user={user}
+          key={nanoid()}
+          followUserToggle={followUserToggle}
+        />
+      ))}
     </div>
   );
 }
