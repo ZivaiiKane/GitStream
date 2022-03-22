@@ -27,9 +27,12 @@ export default function UserCard({ user, followUserToggle }: any) {
           </div>
 
           <div className='flex items-center'>
-            <button className=' px-2 py-[0.1rem] mt-2 mr-4  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
-              View
-            </button>
+            <a href={`${user.data.data.html_url}`}>
+              <button className=' px-2 py-[0.1rem] mt-2 mr-4  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'>
+                View
+              </button>
+            </a>
+
             <button
               className=' px-2 py-[0.1rem] mt-2 mr-4 text-neutral-900  border-[1.6px] border-neutral-900 hover:bg-neutral-900 hover:text-white transition-all'
               onClick={() => {
