@@ -1,7 +1,7 @@
 export default function RepoCard({ repo }: any) {
   console.log('Card: ', repo);
   return (
-    <a href={`${repo.git_url}`}>
+    <a href={`${repo.html_url}`}>
       <div className='repo-card bg-white p-4 border-[1.2px] border-neutral-700 transition-all my-4'>
         <div className='flex items-center justify-between'>
           <div className='flex items-center'>

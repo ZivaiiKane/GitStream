@@ -8,9 +8,8 @@ export default function Navbar() {
   function userSignOut() {
     signOut(auth)
       .then(() => {
-        console.log('HERE');
         document.cookie =
-          'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; ';
+          'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/dashboard; ';
         navigate('/login');
       })
       .catch((error) => {});
