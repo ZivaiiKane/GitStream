@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://api.github.com/',
-  timeout: 1000,
+  timeout: 2000,
   headers: {
     Authorization: `${import.meta.env.VITE_GITHUB_ACCESS_TOKEN}`,
   },

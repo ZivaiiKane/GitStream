@@ -14,7 +14,7 @@ export default function Repos() {
 
   useEffect(() => {
     getFollowing();
-    console.log('Following: ', following);
+    return () => {};
   }, []);
 
   function getCookie(name: string) {
@@ -61,11 +61,11 @@ export default function Repos() {
         />
 
         {!isLoading ? (
-          usersInfo.forEach((repoResponse) => {
-            repoResponse.data?.data.map((repo: any) => (
-              <RepoCard repo={repo} key={nanoid()} />
-            ));
-          })
+          usersInfo.map((repos) =>
+            repos.data?.data.map((repoData: any) => {
+              return <RepoCard repo={repoData} key={nanoid()} />;
+            })
+          )
         ) : (
           <p className=' text-center text-3xl mt-8 text-neutral-700'>
             Loading...

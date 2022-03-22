@@ -1,6 +1,6 @@
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQueries, useQuery } from 'react-query';
 import { getAllUsers, getUser } from '../../../adapters/users';
 import { IAllUsers } from '../../../interfaces/interfaces';
