@@ -24,12 +24,22 @@
   box-shadow: -8px 8px 0 #6366f1;
 }
 
-.img-card:hover span {
+.img-card span {
   transform: translate(4px, -4px);
   box-shadow: -6px 6px 0 #171717;
 }
 
 .user-card:hover .stats {
+  transform: translate(4px, -4px);
+  box-shadow: -6px 6px 0 #171717;
+}
+
+.repo-card:hover {
+  transform: translate(4px, -4px);
+  box-shadow: -6px 6px 0 #171717;
+}
+
+.repo-card:hover span {
   transform: translate(4px, -4px);
   box-shadow: -6px 6px 0 #171717;
 }

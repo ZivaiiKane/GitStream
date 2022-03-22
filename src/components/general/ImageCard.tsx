@@ -21,7 +21,7 @@ export default function ImageCard({
 
         {languages.map((language) => (
           <span
-            className={`text-[0.9em] inline-block tracking-[0.15ch] font-normal ${language.colour} text-white   py-[0.2em] px-[0.5em]  mt-2 mr-2 transition-all`}
+            className={`text-[0.9em] inline-block tracking-[0.15ch] font-normal ${language.colour} text-white   py-[0.2em] px-[0.5em]  mt-4 mr-2 transition-all`}
             key={nanoid()}
           >
             #{language.text}
