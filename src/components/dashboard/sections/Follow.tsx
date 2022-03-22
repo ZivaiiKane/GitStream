@@ -41,10 +41,12 @@ export default function Follow() {
       return {
         queryKey: ['Following', user],
         queryFn: () => getUser(user),
-        enabled: !!users,
+        enabled: !!following,
       };
     }) ?? []
   );
+
+  const isLoading = usersInfo.some((query) => query.isLoading);
 
   return (
     <>
@@ -58,9 +60,13 @@ export default function Follow() {
         ]}
       />
 
-      {usersInfo.map((user) => (
-        <UserCard user={user} key={nanoid()} />
-      ))}
+      {!isLoading ? (
+        usersInfo.map((user) => <UserCard user={user} key={nanoid()} />)
+      ) : (
+        <p className=' text-center text-3xl mt-8 text-neutral-700'>
+          Loading...
+        </p>
+      )}
     </>
   );
 }

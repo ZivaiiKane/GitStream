@@ -1,5 +1,6 @@
 import { getFirestore, doc, updateDoc, getDoc } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
+import { useState } from 'react';
 import { useQueries, useQuery } from 'react-query';
 import { getAllUsers, getUser } from '../../../adapters/users';
 import { IAllUsers } from '../../../interfaces/interfaces';
@@ -8,6 +9,8 @@ import UserCard from '../UserCard';
 
 export default function Dev() {
   const { data: users } = useQuery('users', getAllUsers);
+  const [trackFollowing, setTrackFollowing] = useState(['']);
+
   const db = getFirestore();
 
   const usersInfo = useQueries(
@@ -19,6 +22,8 @@ export default function Dev() {
       };
     }) ?? []
   );
+
+  const isLoading = usersInfo.some((query) => query.isLoading);
 
   function getCookie(name: string) {
     let data = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
@@ -43,6 +48,8 @@ export default function Dev() {
           following: isFollowingArr.filter((following) => following !== user),
         });
       }
+
+      setTrackFollowing(userSnap.data().following);
     } else {
       console.error('No match');
     }
@@ -60,13 +67,23 @@ export default function Dev() {
         ]}
       />
 
-      {usersInfo.map((user) => (
-        <UserCard
-          user={user}
-          key={nanoid()}
-          followUserToggle={followUserToggle}
-        />
-      ))}
+      {!isLoading ? (
+        usersInfo.map((user: any) =>
+          trackFollowing.includes(user.data.data.login) ? (
+            ``
+          ) : (
+            <UserCard
+              user={user}
+              key={nanoid()}
+              followUserToggle={followUserToggle}
+            />
+          )
+        )
+      ) : (
+        <p className=' text-center text-3xl mt-8 text-neutral-700'>
+          Loading...
+        </p>
+      )}
     </div>
   );
 }

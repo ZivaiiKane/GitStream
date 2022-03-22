@@ -1,6 +1,4 @@
 export default function UserCard({ user, followUserToggle }: any) {
-  let follow = true;
-
   return (
     <div className=' user-card flex flex-row p-4 border-[1.3px] border-neutral-700 my-8 transition-all'>
       <div className=' w-26 h-26'>
