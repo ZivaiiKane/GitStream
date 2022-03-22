@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useQueries, useQuery } from 'react-query';
 import { getAllUsers, getUser } from '../../../adapters/users';
 import { IAllUsers } from '../../../interfaces/interfaces';
+import AnimatedPage from '../../general/AnimatedPage';
 import ImageCard from '../../general/ImageCard';
 import UserCard from '../UserCard';
 
@@ -56,34 +57,36 @@ export default function Dev() {
   }
 
   return (
-    <div>
-      <ImageCard
-        img='src/img/repos.jpg'
-        description={`Welcome to GitStream a place for all your push, pulls and merges. In this section you'll find all the developers.`}
-        heading='Developers'
-        languages={[
-          { text: 'People', colour: 'bg-orange-400' },
-          { text: 'Developers', colour: 'bg-red-400' },
-        ]}
-      />
+    <AnimatedPage>
+      <div>
+        <ImageCard
+          img='src/img/repos.jpg'
+          description={`Welcome to GitStream a place for all your push, pulls and merges. In this section you'll find all the developers.`}
+          heading='Developers'
+          languages={[
+            { text: 'People', colour: 'bg-orange-400' },
+            { text: 'Developers', colour: 'bg-red-400' },
+          ]}
+        />
 
-      {!isLoading ? (
-        usersInfo.map((user: any) =>
-          trackFollowing.includes(user.data.data.login) ? (
-            ``
-          ) : (
-            <UserCard
-              user={user}
-              key={nanoid()}
-              followUserToggle={followUserToggle}
-            />
+        {!isLoading ? (
+          usersInfo.map((user: any) =>
+            trackFollowing.includes(user.data.data.login) ? (
+              ``
+            ) : (
+              <UserCard
+                user={user}
+                key={nanoid()}
+                followUserToggle={followUserToggle}
+              />
+            )
           )
-        )
-      ) : (
-        <p className=' text-center text-3xl mt-8 text-neutral-700'>
-          Loading...
-        </p>
-      )}
-    </div>
+        ) : (
+          <p className=' text-center text-3xl mt-8 text-neutral-700'>
+            Loading...
+          </p>
+        )}
+      </div>
+    </AnimatedPage>
   );
 }

@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useQueries } from 'react-query';
 import { getUserRepos } from '../../../adapters/repos';
+import AnimatedPage from '../../general/AnimatedPage';
 import ImageCard from '../../general/ImageCard';
 import RepoCard from '../RepoCard';
 
@@ -48,27 +49,29 @@ export default function Repos() {
 
   return (
     <>
-      <ImageCard
-        description={`Find all your networks repositories in one place. Here you can view the reops of everyone you are following.`}
-        heading='Repository'
-        img='../src/img/dev.jpg'
-        languages={[
-          { text: 'Code', colour: 'bg-emerald-400' },
-          { text: 'Github', colour: 'bg-indigo-400' },
-        ]}
-      />
+      <AnimatedPage>
+        <ImageCard
+          description={`Find all your networks repositories in one place. Here you can view the reops of everyone you are following.`}
+          heading='Repository'
+          img='../src/img/dev.jpg'
+          languages={[
+            { text: 'Code', colour: 'bg-emerald-400' },
+            { text: 'Github', colour: 'bg-indigo-400' },
+          ]}
+        />
 
-      {!isLoading ? (
-        usersInfo.forEach((repoResponse) => {
-          repoResponse.data?.data.map((repo: any) => (
-            <RepoCard repo={repo} key={nanoid()} />
-          ));
-        })
-      ) : (
-        <p className=' text-center text-3xl mt-8 text-neutral-700'>
-          Loading...
-        </p>
-      )}
+        {!isLoading ? (
+          usersInfo.forEach((repoResponse) => {
+            repoResponse.data?.data.map((repo: any) => (
+              <RepoCard repo={repo} key={nanoid()} />
+            ));
+          })
+        ) : (
+          <p className=' text-center text-3xl mt-8 text-neutral-700'>
+            Loading...
+          </p>
+        )}
+      </AnimatedPage>
     </>
   );
 }
